@@ -12,6 +12,12 @@ Add the sections that apply; skip the rest. Keep it short - run `claude-md-clean
 ## Node
 - Default to the latest Node LTS. Pin `.nvmrc`, `package.json` `engines`, the Dockerfile base image and CI to it, and run local verification under it. Fall back to the previous LTS only when a dependency or the host demonstrably blocks the latest (verify with `npm view <pkg> engines.node` and a real install/build/test), and record the blocker in the project docs.
 
+## Minimal solutions (Ponytail)
+- Use the Ponytail plugin in `full` mode: before writing code, check whether it needs to exist, whether the codebase or stdlib already does it, and whether a native platform feature covers it. Fix bugs at the root cause (grep every caller). Run `/ponytail-review` on diffs and `/ponytail-audit` for whole-repo bloat. Don't apply it to input validation, security, error handling that prevents data loss, or accessibility.
+
+## Codebase map
+- On an existing repo, run `/graphify` first and query `graphify-out/` before broad file searches.
+
 ## Security
 - Before writing code for auth, sessions, passwords, file uploads, input validation or user data, read the matching OWASP cheat sheet at cheatsheetseries.owasp.org and follow it.
 - Per phase: review the touched surface (auth, input handling, data access, secrets, uploads, webhooks, CORS/headers, deploy config); report findings with evidence or "no issues found in touched surface". At release gates (opening a PR, milestone completion, pre-production deploy) offer the full security audit.

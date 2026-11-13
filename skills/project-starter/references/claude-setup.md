@@ -40,12 +40,30 @@ The author's working setup, grouped so a newcomer can start with the core and ad
 | GSD (get-shit-done / gsd-core) | github.com/open-gsd/gsd-core | Spec-driven planning, phases, execution, review, verification |
 | SlopMonster | github.com/ItsssssJack/SlopMonster | Remove AI writing tells from public copy |
 | Hallmark | github.com/nutlope/hallmark | Anti-AI-slop design review |
-| graphify | `/graphify` | Turn any input into a knowledge graph |
+| Graphify | github.com/Graphify-Labs/graphify (Apache-2.0, `/graphify`) | Turn a codebase, docs, schemas and PDFs into a queryable knowledge graph with local AST parsing; run it first when onboarding an existing repo |
 | security-audit | local skill | Full multi-phase security audit (heavy; offered at release gates) |
 | project-stack | superseded by `project-starter` | Stack defaults |
 | open-source-standards | based on opensource.guide | Community files, licensing, security settings for public repos |
 | marketingskills | github.com/coreyhaines31/marketingskills | Marketing skill pack |
 | This repo's skills | `app-legal-risk-audit`, `security-holes-audit`, `ux-details-builder`, `claude-md-cleanup`, `project-starter` | Audits and builders |
+
+## Reviewed skill packs
+
+Reviewed 2026-11-13. Install with `npx skills add <owner/repo>` (or the pack's own command) and pick the skills listed; don't vendor them into this repo, so they stay current upstream. Check the licence before copying any pack's files.
+
+| Pack | Verdict | Take these | Fits |
+| --- | --- | --- | --- |
+| supabase/agent-skills -> `supabase-postgres-best-practices` | **Add** (works on any Postgres, not just Supabase) | the one skill | Every PostgreSQL + Drizzle project: schema, indexes, RLS, query design |
+| addyosmani/web-quality-skills | **Add the 2 missing**, rest already installed | `performance`, `seo` (already have `accessibility`, `best-practices`, `core-web-vitals`, `web-quality-audit`) | Website launch gate and `test.<domain>` audits |
+| SNLabat/SEO-GEO-AEO-Skill | **Add (optional)**; repo has no licence, so install by reference only | `SKILL.md` audit | SEO plus AI-search (GEO/AEO) audit at launch; complements `seo` above |
+| playwright.dev/agent-cli/skills | **Add** | `playwright-cli install --skills` (-g for global) | Test generation and healing, tracing, request mocking, storage state; complements the Playwright plugin for the per-phase smoke E2E |
+| vercel-labs/agent-skills | **Add selectively** | `composition-patterns` (React/shadcn component APIs), `react-native-skills` (Expo), `react-view-transitions` (pairs with UX detail 9); already have `react-best-practices`, `web-design-guidelines` | Next.js and Expo projects. Skip `deploy-to-vercel`, `vercel-cli-with-tokens`, `vercel-optimize` (stack deploys via GitHub Actions, GHCR and Coolify, not Vercel) and `writing-guidelines` (SlopMonster covers copy) |
+| emilkowalski/skills | **Add selectively** (optional polish layer) | `emil-design-eng`, `animate`, `animation-performance`, `gestures`, `apple-design`, `break-ui`, `review-animations`, `learn-taste` | Frontend polish. Overlaps `make-interfaces-feel-better` and `userinterface-wiki`; `gestures` and `apple-design` back `ux-details-builder` items 10-11. Pick one primary motion advisor per project |
+| shadowtor/BrandDesign (`brand-studio`) | **Already have** | whole skill | Branding step for new projects: logo, palette, favicons, social, guidelines PDF |
+| DietrichGebert/ponytail | **Core** (already in plugins) | `ponytail`, `ponytail-review`, `ponytail-audit`, `ponytail-debt` | Keep solutions minimal; set mode in CLAUDE.md template |
+| Graphify-Labs/graphify | **Already have; keep** | `/graphify` | Onboarding existing repos |
+| collectivebrain.de `design-design-critique`, `design-research-synthesis` | **Skip** - same Anthropic originals as the `design` plugin's `design-critique` and `research-synthesis` | none | Already covered |
+| collectivebrain.de `github-actions-sparen` | **Skip as install** - the minutes/billing guidance is already in `stack.md` hosting rules and the local `github-workflows` skill; revisit if a deploy is blocked by a spending limit | none | Reference only |
 
 ## MCP servers
 
