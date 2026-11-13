@@ -25,13 +25,13 @@ The defaults live in `references/` so they can be edited without touching this f
 ### 1. Detect the situation
 New project (empty or near-empty repo) or existing repo? Read the repo's README, package manifest and CLAUDE.md first; preserve a working project's identity and architecture rather than re-platforming it.
 
-For an existing repo, build a codebase map first (`/graphify` if installed) so the later review phase works from the graph, not scattered file reads.
+For an existing repo, build a codebase map first (`/graphify` if installed) so the later review phase works from the graph, not scattered file reads. Create a `.graphifyignore` excluding dot-files/folders (`.env*`, `.planning/`, `.git/`, `.claude/`) first, since GSD keeps its state in `.planning/` and secrets must not be ingested.
 
 ### 2. Stack (new projects, or record for existing)
 Use the decision table in `references/stack.md`. Pick the smallest combination that meets the requirements - being in the toolbelt does not mean a project needs the tool. Verify current stable versions and supported integrations from official docs (or Context7 if available), not memory. Confirm the choice with the user in one short message (one recommendation, not a menu), then record it.
 
 ### 3. Claude setup
-Follow `references/claude-setup.md`: add the CLAUDE.md template sections that apply, check which recommended plugins/MCP servers/skills are already present, and tell the user the exact install commands for the missing ones. Don't install plugins into the user's global config without asking. Ponytail is part of the core set; the "Reviewed skill packs" table lists which third-party packs to add for the project's stack (Postgres, Next.js, Expo, SEO, Playwright) - suggest only those that fit.
+Follow `references/claude-setup.md`: add the CLAUDE.md template sections that apply (always include the "Minimal solutions (Ponytail, with GSD)" and "Codebase map" blocks so Ponytail is applied during planning, execution and review, not just remembered), check which recommended plugins/MCP servers/skills are already present, and tell the user the exact install commands for the missing ones. Don't install plugins into the user's global config without asking. Ponytail is part of the core set; the "Reviewed skill packs" table lists which third-party packs to add for the project's stack (Postgres, Next.js, Expo, SEO, Playwright) - suggest only those that fit.
 
 ### 4. Baseline tooling
 Follow `references/dev-tooling.md` item by item. Hard rules that apply to every tool:
