@@ -1,0 +1,11 @@
+{
+  "name": "project-tools",
+  "owner": { "name": "shadowtor" },
+  "plugins": [
+    {
+      "name": "project-tools",
+      "source": "./",
+      "description": "Project starter stack, legal-risk and security audits, UX details builder, CLAUDE.md cleanup."
+    }
+  ]
+}

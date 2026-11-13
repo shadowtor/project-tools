@@ -1,0 +1,8 @@
+{
+  "name": "project-tools",
+  "description": "Skills for starting, auditing and polishing projects: project starter stack, legal-risk audit, security-holes audit, UX details builder, CLAUDE.md cleanup.",
+  "version": "0.1.0",
+  "author": { "name": "shadowtor" },
+  "license": "MIT",
+  "skills": "./skills"
+}
