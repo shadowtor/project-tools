@@ -18,7 +18,24 @@ Preserve an existing project's architecture. Record the selected stack, exceptio
 | Internal/data-heavy app | Next.js + Mantine, or Directus | Directus when a DB admin UI + APIs is enough |
 | Ecommerce | Shopify; Hydrogen + Oxygen for custom headless | Keep products, checkout, payments, orders in Shopify |
 | Existing WordPress | WordPress (+ WooCommerce if needed) | Preserve existing investment and plugins |
+| Desktop application (speed-critical or local-first) | Rust + Tauri, web UI (React + Tailwind + shadcn) in the webview | Rust owns the performance-critical and OS-facing code; verify current Tauri/plugin support at setup. Use Electron only for a documented compatibility need |
 | Bot, worker, automation, service with no frontend | Appropriate runtime + Docker | Skip website launch rules |
+
+## Where to use the preferred technologies
+
+| Technology | Use it for | Don't use it for |
+| --- | --- | --- |
+| **Next.js** | Any authenticated web app, SaaS, portal, dashboard; Payload-backed apps; the web half of a web + mobile product | Content-led marketing sites (use Astro) |
+| **Rust** | Desktop apps (via Tauri), CLIs, and performance- or memory-critical services and libraries; native modules/WASM where JS is the measured bottleneck | CRUD web apps and anything where JS/TS is fast enough - the build and hiring cost isn't worth it |
+| **Tailwind + shadcn/ui** | All custom React UI (Next.js, Tauri webview); Tailwind alone (+ daisyUI) for Astro | Mantine-based admin tools (don't mix systems) |
+| **Node.js** | Production runtime for Next.js and most server code (latest LTS, pinned in `.nvmrc`, `engines`, Dockerfile, CI) | - |
+| **Bun** (preferred for speed) | Package manager (`bun install`), script and task runner, test runner, standalone services/workers/CLIs that don't depend on Node-only APIs | Production runtime for Next.js unless verified end to end (build, deploy image, native deps, Docker); keep the Node LTS pin as the fallback and record the decision |
+| **PostgreSQL** | Default store for all custom application data | Caching, queues, ephemeral state (Redis) |
+| **Drizzle ORM** (default) / **Prisma** | Type-safe access to a schema the app owns. Drizzle for SQL-close control and light runtime; Prisma when the project already uses it or its migration/Studio workflow is wanted | Both on one schema - one ORM and one migration owner per database; neither over CMS-managed tables |
+| **Redis** | Rate limiting, background jobs/queues, locks, sessions, caches - only once a concrete need appears | Authoritative business records (Postgres) |
+| **React Native + Expo** | iOS/Android apps, optionally alongside a Next.js web app sharing one backend and Zod/TypeScript contracts | Content sites and desktop apps |
+
+Rule of thumb: Next.js + Postgres + Drizzle on Bun tooling (Node LTS at runtime) is the default web-app path; add Redis when rate limits or queues are needed; add Expo for mobile; reach for Rust when the product is a desktop app or has a measured performance hotspot.
 
 ## Core technologies
 

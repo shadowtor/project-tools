@@ -25,6 +25,10 @@ Add the sections that apply; skip the rest. Keep it short - run `claude-md-clean
 - **Exclude dot-files and dot-folders** from the graph: `.env*`, `.planning/`, `.git/`, `.claude/`, and other hidden config. Secrets must never be ingested, and GSD's planning state is read by GSD directly, not through the graph. Graphify honours `.gitignore`, `--exclude` patterns and a project `.graphifyignore`; put these patterns in `.graphifyignore` (and add `graphify-out/` to `.gitignore` if the graph isn't meant to be committed), then check the "skipped by ignore rules" summary after extraction to confirm nothing hidden was read.
 - Rebuild the graph after a phase changes structure so GSD researchers and mappers query a current map; GSD artifacts remain the source of truth for requirements, plans and state.
 
+## Preferred technologies
+- Default web app: Next.js + PostgreSQL + Drizzle (Prisma only if already used), Tailwind + shadcn/ui, Redis only when a need appears, Expo for mobile. Desktop and performance-critical native code: Rust (Tauri). See `project-starter` `stack.md` "Where to use the preferred technologies".
+- Prefer Bun for installs, scripts and tests; keep Node LTS as the production runtime unless Bun is verified end to end for that project.
+
 ## Security
 - Before writing code for auth, sessions, passwords, file uploads, input validation or user data, read the matching OWASP cheat sheet at cheatsheetseries.owasp.org and follow it.
 - Per phase: review the touched surface (auth, input handling, data access, secrets, uploads, webhooks, CORS/headers, deploy config); report findings with evidence or "no issues found in touched surface". At release gates (opening a PR, milestone completion, pre-production deploy) offer the full security audit.
