@@ -85,6 +85,17 @@ Decision tree: content/search-driven -> Astro; account areas without native need
 | Mailpit | Mail catcher for local and `test` environments |
 | Fail2Ban (+ Fail2Ban UI) | Log-based bans on Linux hosts you administer |
 
+## Secrets and credentials
+
+Default: **self-hosted Infisical** (run as a Coolify service, one shared instance for all solo projects) instead of per-project `.env` / `.infra` files. No per-seat SaaS cost; Doppler and Infisical Cloud are acceptable only if self-hosting isn't an option.
+
+- One Infisical project per app, with `dev`, `test` and `prod` environments. Coolify gets prod secrets through Infisical's Coolify integration (or Coolify's own env store as the runtime fallback), so a down Infisical never blocks a running app.
+- Claude and local dev: a read-only **machine identity per project, scoped to `dev` and `test` only, never `prod`**. Run commands as `infisical run --env=dev -- <cmd>` so secrets are injected into the process and never written to a file or printed.
+- The machine identity's client ID/secret is the one credential kept outside Infisical (user-level environment variables or a password manager), never in the repo.
+- Back up `ENCRYPTION_KEY` and `AUTH_SECRET` separately from the server (password manager); losing them makes every secret unrecoverable. Schedule Postgres backups and test a restore.
+- Put the Infisical admin UI behind Cloudflare Access; databases stay on the private network.
+- Commit only a `.env.example` listing variable names with no values. `.env*` stays gitignored and excluded from Graphify.
+
 ## Avoid overlapping responsibilities
 
 - One CMS/backend per set of models; don't stack EmDash, Payload and Directus over the same data.

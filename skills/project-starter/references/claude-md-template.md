@@ -29,6 +29,11 @@ Add the sections that apply; skip the rest. Keep it short - run `claude-md-clean
 - Default web app: Next.js + PostgreSQL + Drizzle (Prisma only if already used), Tailwind + shadcn/ui, Redis only when a need appears, Expo for mobile. Desktop and performance-critical native code: Rust (Tauri). See `project-starter` `stack.md` "Where to use the preferred technologies".
 - Prefer Bun for installs, scripts and tests; keep Node LTS as the production runtime unless Bun is verified end to end for that project.
 
+## Secrets (Infisical)
+- Secrets live in the shared self-hosted Infisical, not in `.env` / `.infra` files. Run commands that need them as `infisical run --env=dev -- <cmd>`; never print, log, echo or commit secret values.
+- Use the project's read-only machine identity (dev/test only). Never request or use prod secrets; production values reach the app through Coolify. Commit `.env.example` (names only).
+- If a secret is missing, tell the user which variable to add in Infisical instead of creating a local `.env`.
+
 ## Security
 - Before writing code for auth, sessions, passwords, file uploads, input validation or user data, read the matching OWASP cheat sheet at cheatsheetseries.owasp.org and follow it.
 - Per phase: review the touched surface (auth, input handling, data access, secrets, uploads, webhooks, CORS/headers, deploy config); report findings with evidence or "no issues found in touched surface". At release gates (opening a PR, milestone completion, pre-production deploy) offer the full security audit.
