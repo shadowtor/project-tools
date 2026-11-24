@@ -28,7 +28,7 @@ The author's working setup, grouped so a newcomer can start with the core and ad
 - Keep it current: AutoUpdate for the plugin; `npx modern-web-guidance@latest update` for a CLI install. Re-check it at each milestone, since the guides change often.
 - Use: `npx modern-web-guidance@latest search "<task>"` then `retrieve <id>` before writing web-platform code; `npx modern-web-guidance@latest legacy-scan .` to find legacy patterns in an existing repo.
 - Experimental features stay gated: origin-trial and single-engine "volatile" guides unlock only via `.mwgrc` (`allowOriginTrials`, `allowVolatileFeatures`) and only with the user's say-so.
-- Telemetry: Google collects anonymous usage and search queries. Set `DISABLE_TELEMETRY=1` in the shell profile if the user wants it off. Apache-2.0. Needs Node 22+.
+- Telemetry: Google collects anonymous usage and search queries, so **set `DISABLE_TELEMETRY=1` by default** (user-level environment variable on Windows, or `export DISABLE_TELEMETRY=1` in the shell profile; restart Claude Code afterwards) and tell the user. Only leave it on if they ask. Apache-2.0. Needs Node 22+.
 
 ## Situational plugins
 

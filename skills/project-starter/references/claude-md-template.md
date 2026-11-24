@@ -30,6 +30,7 @@ Add the sections that apply; skip the rest. Keep it short - run `claude-md-clean
 - On an existing repo run `npx modern-web-guidance@latest legacy-scan .` and report the legacy patterns; modernise only what the phase touches.
 - Don't use origin-trial or volatile single-engine features unless the user opts in via `.mwgrc`.
 - Keep the plugin current (marketplace `googlechrome`, AutoUpdate on); re-check at each milestone.
+- Run the CLI with `DISABLE_TELEMETRY=1` set (user-level env var); never turn telemetry back on without asking.
 
 ## Preferred technologies
 - Default web app: Next.js + PostgreSQL + Drizzle (Prisma only if already used), Tailwind + shadcn/ui, Redis only when a need appears, Expo for mobile. Desktop and performance-critical native code: Rust (Tauri). See `project-starter` `stack.md` "Where to use the preferred technologies".
