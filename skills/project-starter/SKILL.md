@@ -31,7 +31,7 @@ For an existing repo, build a codebase map first (`/graphify` if installed) so t
 Use the decision table in `references/stack.md`. Pick the smallest combination that meets the requirements - being in the toolbelt does not mean a project needs the tool. Verify current stable versions and supported integrations from official docs (or Context7 if available), not memory. Confirm the choice with the user in one short message (one recommendation, not a menu), then record it.
 
 ### 3. Claude setup
-Follow `references/claude-setup.md`: add the CLAUDE.md template sections that apply (always include the "Minimal solutions (Ponytail, with GSD)" and "Codebase map" blocks so Ponytail is applied during planning, execution and review, not just remembered), check which recommended plugins/MCP servers/skills are already present, and tell the user the exact install commands for the missing ones. Don't install plugins into the user's global config without asking. Ponytail is part of the core set; the "Reviewed skill packs" table lists which third-party packs to add for the project's stack (Postgres, Next.js, Expo, SEO, Playwright) - suggest only those that fit.
+Follow `references/claude-setup.md`: add the CLAUDE.md template sections that apply (always include the "Minimal solutions (Ponytail, with GSD)" and "Codebase map" blocks so Ponytail is applied during planning, execution and review, not just remembered), check which recommended plugins/MCP servers/skills are already present, and tell the user the exact install commands for the missing ones. Don't install plugins into the user's global config without asking. For any web-based project (site, web app, PWA, Electron/Tauri webview) `modern-web-guidance` is **required**: check it's installed from the `googlechrome` marketplace with AutoUpdate on, and add the "Modern web platform" CLAUDE.md block. Ponytail is part of the core set; the "Reviewed skill packs" table lists which third-party packs to add for the project's stack (Postgres, Next.js, Expo, SEO, Playwright) - suggest only those that fit.
 
 ### 4. Baseline tooling
 Follow `references/dev-tooling.md` item by item. Hard rules that apply to every tool:
@@ -41,7 +41,7 @@ Follow `references/dev-tooling.md` item by item. Hard rules that apply to every 
 - Analytics (Umami) belongs on a server, not in the repo: write the steps and don't run them.
 
 ### 5. Baseline review phase
-Create a phase (a GSD phase if the project uses GSD, otherwise a `docs/baseline-audit.md` checklist) that runs, against the current codebase: the tool scans, plus the sibling skills from this repository where they apply - `security-holes-audit`, `app-legal-risk-audit`, `ux-details-builder`, and `claude-md-cleanup` - and ends with a fix/add/change list for the user to approve.
+Create a phase (a GSD phase if the project uses GSD, otherwise a `docs/baseline-audit.md` checklist) that runs, against the current codebase: the tool scans (for web projects including `npx modern-web-guidance@latest legacy-scan .`), plus the sibling skills from this repository where they apply - `security-holes-audit`, `app-legal-risk-audit`, `ux-details-builder`, and `claude-md-cleanup` - and ends with a fix/add/change list for the user to approve.
 
 ### 6. Report
 Finish with a table: **tool, installed or skipped, where it lives, anything still waiting on the user** (accounts, secrets, restarts, admin rights).

@@ -59,6 +59,10 @@ Choose **one** component system per frontend:
 
 Reskin through theme tokens and CSS variables first. Charts: Chart.js (react-chartjs-2 in React) with accessible labels and a text/table equivalent. Motion: GSAP or Anime.js, not both; Motion or react-spring only for a concrete need. Respect `prefers-reduced-motion`, protect LCP/CLS, don't add an animation library when CSS suffices. Specialist libraries: see `toolbelt.md`.
 
+## Web platform standards (required for every web-based project)
+
+Use `modern-web-guidance` (GoogleChrome; see `claude-setup.md`) as the source for current HTML/CSS/JS practice and browser support. Prefer native platform features (dialog/popover, view transitions, container queries, `:has()`, scroll-driven animation and so on) over libraries when Baseline support fits the project's browser targets; fall back with small custom code, not heavy polyfills. Keep the plugin on AutoUpdate so the guidance stays current.
+
 ## Mobile
 
 Expo + React Native + TypeScript with Expo Router; NativeWind and React Native Reusables optional. EAS Build/Submit/Update are optional conveniences - keep a documented build path that works without paid Expo services, prefer local builds or self-hosted CI, and don't promise "free" (store accounts, Mac/macOS runner for iOS, backend hosting all cost money). Share one backend, auth authority and data model between web and mobile; keep platform UI separate; native clients can't rely on browser cookies or Next.js server actions alone.

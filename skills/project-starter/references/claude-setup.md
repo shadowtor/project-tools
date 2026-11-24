@@ -19,6 +19,16 @@ The author's working setup, grouped so a newcomer can start with the core and ad
 | claude-code-setup | claude-plugins-official | Recommends automations for a codebase |
 | everything-claude-code | `affaan-m/everything-claude-code` | Large library of language reviewers, build resolvers, patterns |
 | ponytail | `DietrichGebert/ponytail` | Keeps solutions minimal; audits over-engineering |
+| modern-web-guidance | `GoogleChrome/modern-web-guidance` (marketplace `googlechrome`) | **Required for every web-based project.** Current web-platform guidance, Baseline browser-support data and a legacy-pattern scanner, so agents stop writing outdated JS/CSS/HTML |
+
+### modern-web-guidance (required for web projects)
+
+- Install: `/plugin marketplace add GoogleChrome/modern-web-guidance`, `/plugin install modern-web-guidance@googlechrome`, then run `/plugin`, select the GoogleChrome marketplace and **enable AutoUpdate**, then `/reload-plugins`. Alternatives: `npx modern-web-guidance@latest install` or `npx skills add GoogleChrome/modern-web-guidance`.
+- **Use the `googlechrome` marketplace, not `claude-plugins-official`**: the official marketplace stopped updating third-party plugins in Oct 2026 and strands installs on an old version. If it's installed from there, uninstall it and reinstall from `googlechrome`.
+- Keep it current: AutoUpdate for the plugin; `npx modern-web-guidance@latest update` for a CLI install. Re-check it at each milestone, since the guides change often.
+- Use: `npx modern-web-guidance@latest search "<task>"` then `retrieve <id>` before writing web-platform code; `npx modern-web-guidance@latest legacy-scan .` to find legacy patterns in an existing repo.
+- Experimental features stay gated: origin-trial and single-engine "volatile" guides unlock only via `.mwgrc` (`allowOriginTrials`, `allowVolatileFeatures`) and only with the user's say-so.
+- Telemetry: Google collects anonymous usage and search queries. Set `DISABLE_TELEMETRY=1` in the shell profile if the user wants it off. Apache-2.0. Needs Node 22+.
 
 ## Situational plugins
 
@@ -60,6 +70,7 @@ Reviewed 2026-11-13. Install with `npx skills add <owner/repo>` (or the pack's o
 | vercel-labs/agent-skills | **Add selectively** | `composition-patterns` (React/shadcn component APIs), `react-native-skills` (Expo), `react-view-transitions` (pairs with UX detail 9); already have `react-best-practices`, `web-design-guidelines` | Next.js and Expo projects. Skip `deploy-to-vercel`, `vercel-cli-with-tokens`, `vercel-optimize` (stack deploys via GitHub Actions, GHCR and Coolify, not Vercel) and `writing-guidelines` (SlopMonster covers copy) |
 | emilkowalski/skills | **Add selectively** (optional polish layer) | `emil-design-eng`, `animate`, `animation-performance`, `gestures`, `apple-design`, `break-ui`, `review-animations`, `learn-taste` | Frontend polish. Overlaps `make-interfaces-feel-better` and `userinterface-wiki`; `gestures` and `apple-design` back `ux-details-builder` items 10-11. Pick one primary motion advisor per project |
 | shadowtor/BrandDesign (`brand-studio`) | **Already have** | whole skill | Branding step for new projects: logo, palette, favicons, social, guidelines PDF |
+| GoogleChrome/modern-web-guidance | **Required for web projects** (Apache-2.0, Chrome/Edge/Firefox/MDN-stewarded) | `modern-web-guidance` skill pack (optionally `chrome-extensions` for extension work) | Every site, web app, Electron/Tauri webview and PWA; see the section above and `claude-md-template.md` |
 | DietrichGebert/ponytail | **Core** (already in plugins) | `ponytail`, `ponytail-review`, `ponytail-audit`, `ponytail-debt` | Written into the project's CLAUDE.md so it is applied at every GSD stage (plan, execute, review) - see `claude-md-template.md` |
 | Graphify-Labs/graphify | **Already have; keep** | `/graphify` | Onboarding existing repos. Must coexist with GSD: exclude dot-files/folders (`.env*`, `.planning/`, `.git/`, `.claude/`) via `.graphifyignore` - see `claude-md-template.md` |
 | collectivebrain.de `design-design-critique`, `design-research-synthesis` | **Skip** - same Anthropic originals as the `design` plugin's `design-critique` and `research-synthesis` | none | Already covered |

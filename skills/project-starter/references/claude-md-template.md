@@ -25,6 +25,12 @@ Add the sections that apply; skip the rest. Keep it short - run `claude-md-clean
 - **Exclude dot-files and dot-folders** from the graph: `.env*`, `.planning/`, `.git/`, `.claude/`, and other hidden config. Secrets must never be ingested, and GSD's planning state is read by GSD directly, not through the graph. Graphify honours `.gitignore`, `--exclude` patterns and a project `.graphifyignore`; put these patterns in `.graphifyignore` (and add `graphify-out/` to `.gitignore` if the graph isn't meant to be committed), then check the "skipped by ignore rules" summary after extraction to confirm nothing hidden was read.
 - Rebuild the graph after a phase changes structure so GSD researchers and mappers query a current map; GSD artifacts remain the source of truth for requirements, plans and state.
 
+## Modern web platform (all web-based projects)
+- Before writing or changing HTML, CSS, browser JS or PWA code, consult `modern-web-guidance` (`npx modern-web-guidance@latest search "<task>"`, then `retrieve <id>`) and prefer the native platform feature over a library or polyfill. Check Baseline support against the project's browser targets; use lightweight fallbacks, not heavy polyfills.
+- On an existing repo run `npx modern-web-guidance@latest legacy-scan .` and report the legacy patterns; modernise only what the phase touches.
+- Don't use origin-trial or volatile single-engine features unless the user opts in via `.mwgrc`.
+- Keep the plugin current (marketplace `googlechrome`, AutoUpdate on); re-check at each milestone.
+
 ## Preferred technologies
 - Default web app: Next.js + PostgreSQL + Drizzle (Prisma only if already used), Tailwind + shadcn/ui, Redis only when a need appears, Expo for mobile. Desktop and performance-critical native code: Rust (Tauri). See `project-starter` `stack.md` "Where to use the preferred technologies".
 - Prefer Bun for installs, scripts and tests; keep Node LTS as the production runtime unless Bun is verified end to end for that project.
