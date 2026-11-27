@@ -17,6 +17,7 @@ Preserve an existing project's architecture. Record the selected stack, exceptio
 | Mobile with a justified exception | Flutter, or native Swift/Kotlin | Only for a documented reason (existing codebase, deep platform needs) |
 | Internal/data-heavy app | Next.js + Mantine, or Directus | Directus when a DB admin UI + APIs is enough |
 | Ecommerce | Shopify; Hydrogen + Oxygen for custom headless | Keep products, checkout, payments, orders in Shopify |
+| Ecommerce Shopify can't serve (custom B2B, marketplace, multi-vendor, complex multi-region, own the data, no per-transaction/app fees) | Medusa (self-hosted on Coolify) + PostgreSQL + Redis, Next.js storefront | Documented reason required; Medusa owns commerce data and its migrations. Use only the MIT-licensed parts - Enterprise Edition materials need a paid licence |
 | Existing WordPress | WordPress (+ WooCommerce if needed) | Preserve existing investment and plugins |
 | Desktop application (speed-critical or local-first) | Rust + Tauri, web UI (React + Tailwind + shadcn) in the webview | Rust owns the performance-critical and OS-facing code; verify current Tauri/plugin support at setup. Use Electron only for a documented compatibility need |
 | Bot, worker, automation, service with no frontend | Appropriate runtime + Docker | Skip website launch rules |
@@ -125,7 +126,7 @@ PostgreSQL for custom app data. Versioned migrations, foreign keys, constraints 
 
 ## Ecommerce
 
-Shopify for established or larger stores; standard themes for ordinary customisation, Hydrogen + Oxygen when a custom headless storefront is justified (it's a separate architecture, not a theme plugin). WooCommerce when an existing WordPress investment, required plugins or mandatory self-hosting justifies it. Don't custom-build core commerce.
+Shopify for established or larger stores; standard themes for ordinary customisation, Hydrogen + Oxygen when a custom headless storefront is justified (it's a separate architecture, not a theme plugin). WooCommerce when an existing WordPress investment, required plugins or mandatory self-hosting justifies it. Medusa (github.com/medusajs/medusa) when the store needs custom commerce logic Shopify can't model well - B2B pricing and quotes, marketplaces, multi-vendor, unusual multi-region setups - or must keep commerce data self-hosted; it's TypeScript on Node with PostgreSQL and Redis and runs on Coolify like the rest of the stack. Stay on its MIT-licensed core; check that no Enterprise Edition material is used without a commercial agreement. Don't custom-build core commerce.
 
 ## Website launch flow
 

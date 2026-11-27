@@ -35,6 +35,7 @@ The author's working setup, grouped so a newcomer can start with the core and ad
 | Plugin | Use when |
 | --- | --- |
 | stripe | Payments/billing work |
+| medusa-dev (`medusajs/medusa-agent-skills`, marketplace `medusa`) | Medusa projects: backend modules, workflows, admin UI, storefront, plus a docs MCP. Add `ecommerce-storefront` for storefront work. Install: `/plugin marketplace add medusajs/medusa-agent-skills`, `/plugin install medusa-dev@medusa` |
 | liquid-skills | Shopify Liquid themes |
 | icons (`FortAwesome/fontawesome-agent-tools`) | Font Awesome icon workflow |
 | open-design (`feimacode/open-design-agent-kit`) | Design artifacts, critique, decks |
@@ -71,6 +72,8 @@ Reviewed 2026-11-13. Install with `npx skills add <owner/repo>` (or the pack's o
 | emilkowalski/skills | **Add selectively** (optional polish layer) | `emil-design-eng`, `animate`, `animation-performance`, `gestures`, `apple-design`, `break-ui`, `review-animations`, `learn-taste` | Frontend polish. Overlaps `make-interfaces-feel-better` and `userinterface-wiki`; `gestures` and `apple-design` back `ux-details-builder` items 10-11. Pick one primary motion advisor per project |
 | shadowtor/BrandDesign (`brand-studio`) | **Already have** | whole skill | Branding step for new projects: logo, palette, favicons, social, guidelines PDF |
 | GoogleChrome/modern-web-guidance | **Required for web projects** (Apache-2.0, Chrome/Edge/Firefox/MDN-stewarded) | `modern-web-guidance` skill pack (optionally `chrome-extensions` for extension work) | Every site, web app, Electron/Tauri webview and PWA; see the section above and `claude-md-template.md` |
+| medusajs/medusa-agent-skills | **Add for Medusa projects only** (official; repo has no licence file, so install by reference, don't vendor; states it collects no data) | `medusa-dev`, optionally `ecommerce-storefront`. Skip `medusa-cloud` (we self-host on Coolify) and `learn-medusa` (tutorial) | Medusa backend, admin and storefront work |
+| medusajs/medusa-community-skills | **Reference only** - a curated list of third-party skills; its own README says to review each skill before installing | none by default; if needed, review the `codee-medusa-*` backend/testing skills first | Medusa projects needing extra conventions |
 | DietrichGebert/ponytail | **Core** (already in plugins) | `ponytail`, `ponytail-review`, `ponytail-audit`, `ponytail-debt` | Written into the project's CLAUDE.md so it is applied at every GSD stage (plan, execute, review) - see `claude-md-template.md` |
 | Graphify-Labs/graphify | **Already have; keep** | `/graphify` | Onboarding existing repos. Must coexist with GSD: exclude dot-files/folders (`.env*`, `.planning/`, `.git/`, `.claude/`) via `.graphifyignore` - see `claude-md-template.md` |
 | collectivebrain.de `design-design-critique`, `design-research-synthesis` | **Skip** - same Anthropic originals as the `design` plugin's `design-critique` and `research-synthesis` | none | Already covered |
